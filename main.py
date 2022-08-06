@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 import asyncio
+import random
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -65,6 +66,22 @@ async def ehh(ctx):
     await vc.disconnect()
 
 
+@bot.command()
+async def yawn(ctx):
+    if not ctx.message.author.voice:
+        await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
+        return
+    else:
+        channel = ctx.message.author.voice.channel
+
+    vc = await channel.connect()
+    filepath = "Yawns/" + str(random.randint(1, 6)) + ".mp3"
+    audio = discord.FFmpegPCMAudio(filepath)
+    player = vc.play(audio)
+    await asyncio.sleep(6)
+    await vc.disconnect()
+
+
 @bot.event
 async def on_message(message):
     await bot.process_commands(message)
@@ -75,7 +92,7 @@ async def on_message(message):
             await message.reply("GaiiiiIIIIIiiiIIIIiiIIii!?!?!?!?!?!")
         elif 'inori' in message.content.lower():
             await message.reply("InoriIIIIiiiIIIiIiiIiiIiiiI!!!!!!!!!")
-        elif 'captain' in message.content.lower():
+        elif 'captain' in message.content.lower() and "<" not in message.content and ">" not in message.content:
             await message.reply("arf arf")
         elif 'incest' in message.content.lower() or 'christmas' in message.content.lower():
             await message.reply("MANAAAAAAAAAAAAAAA!")
