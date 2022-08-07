@@ -67,6 +67,36 @@ async def ehh(ctx):
 
 
 @bot.command()
+async def luca(ctx):
+    if not ctx.message.author.voice:
+        await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
+        return
+    else:
+        channel = ctx.message.author.voice.channel
+
+    vc = await channel.connect()
+    audio = discord.FFmpegPCMAudio('Luca.mp3')
+    player = vc.play(audio)
+    await asyncio.sleep(2)
+    await vc.disconnect()
+
+
+@bot.command()
+async def boy(ctx):
+    if not ctx.message.author.voice:
+        await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
+        return
+    else:
+        channel = ctx.message.author.voice.channel
+
+    vc = await channel.connect()
+    audio = discord.FFmpegPCMAudio('Boy.mp3')
+    player = vc.play(audio)
+    await asyncio.sleep(2.5)
+    await vc.disconnect()
+
+
+@bot.command()
 async def yawn(ctx):
     if not ctx.message.author.voice:
         await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
@@ -78,6 +108,8 @@ async def yawn(ctx):
     filepath = "Yawns/" + str(random.randint(1, 6)) + ".mp3"
     audio = discord.FFmpegPCMAudio(filepath)
     player = vc.play(audio)
+    if filepath == "Yawns/6.mp3":
+        await ctx.send("uwu I'm sorry table-chan <a:captainoof:1004070115567992842>")
     await asyncio.sleep(6)
     await vc.disconnect()
 
