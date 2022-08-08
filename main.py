@@ -4,16 +4,32 @@ from discord.ext import commands
 from dotenv import load_dotenv
 import asyncio
 import random
+from mutagen.mp3 import MP3
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+token = os.getenv('DISCORD_TOKEN')
+guild_id = os.getenv('GUILD_ID')
 
 bot = commands.Bot(command_prefix=',')
 
 
+async def play_audio(ctx, clip, time):
+    if not ctx.message.author.voice:
+        await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
+        return
+    else:
+        channel = ctx.message.author.voice.channel
+
+    vc = await channel.connect()
+    audio = discord.FFmpegPCMAudio(clip)
+    player = vc.play(audio)
+    await asyncio.sleep(time)
+    await vc.disconnect()
+
+
 @bot.event
 async def on_ready():
-    print("Shuuu?")
+    print(f"Shuuu?")
 
 
 @bot.command(name="test")
@@ -23,95 +39,56 @@ async def test(ctx):
 
 @bot.command()
 async def gai(ctx):
-    if not ctx.message.author.voice:
-        await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
-        return
-    else:
-        channel = ctx.message.author.voice.channel
-
-    vc = await channel.connect()
-    audio = discord.FFmpegPCMAudio('Gai.mp3')
-    player = vc.play(audio)
-    await asyncio.sleep(3)
-    await vc.disconnect()
+    time = MP3('Clips/Gai.mp3').info.length
+    await play_audio(ctx, 'Clips/Gai.mp3', time + 0.25)
 
 
 @bot.command()
 async def cri(ctx):
-    if not ctx.message.author.voice:
-        await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
-        return
-    else:
-        channel = ctx.message.author.voice.channel
-
-    vc = await channel.connect()
-    audio = discord.FFmpegPCMAudio('Cri.mp3')
-    player = vc.play(audio)
-    await asyncio.sleep(9)
-    await vc.disconnect()
+    time = MP3('Clips/Cri.mp3').info.length
+    await play_audio(ctx, 'Clips/Cri.mp3',  time + 0.25)
 
 
 @bot.command()
 async def ehh(ctx):
-    if not ctx.message.author.voice:
-        await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
-        return
-    else:
-        channel = ctx.message.author.voice.channel
-
-    vc = await channel.connect()
-    audio = discord.FFmpegPCMAudio('Ehh.mp3')
-    player = vc.play(audio)
-    await asyncio.sleep(4)
-    await vc.disconnect()
+    time = MP3('Clips/Ehh.mp3').info.length
+    await play_audio(ctx, 'Clips/Ehh.mp3', time + 0.25)
 
 
 @bot.command()
 async def luca(ctx):
-    if not ctx.message.author.voice:
-        await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
-        return
-    else:
-        channel = ctx.message.author.voice.channel
-
-    vc = await channel.connect()
-    audio = discord.FFmpegPCMAudio('Luca.mp3')
-    player = vc.play(audio)
-    await asyncio.sleep(2)
-    await vc.disconnect()
+    time = MP3('Clips/Luca.mp3').info.length
+    await play_audio(ctx, 'Clips/Luca.mp3', time + 0.25)
 
 
 @bot.command()
 async def boy(ctx):
-    if not ctx.message.author.voice:
-        await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
-        return
-    else:
-        channel = ctx.message.author.voice.channel
+    time = MP3('Clips/Boy.mp3').info.length
+    await play_audio(ctx, 'Clips/Boy.mp3', time + 0.25)
 
-    vc = await channel.connect()
-    audio = discord.FFmpegPCMAudio('Boy.mp3')
-    player = vc.play(audio)
-    await asyncio.sleep(2.5)
-    await vc.disconnect()
+
+@bot.command()
+async def owo(ctx):
+    chance = random.randint(1, 50)
+    if chance == 50:
+        filepath = 'Clips/Owo2.mp3'
+    else:
+        filepath = 'Clips/Owo.mp3'
+    time = MP3(filepath).info.length
+    await play_audio(ctx, filepath, time + 0.25)
+
+
+@bot.command()
+async def wtf(ctx):
+    time = MP3('Clips/Wtf.mp3').info.length
+    await play_audio(ctx, 'Clips/Wtf.mp3', time + 0.25)
 
 
 @bot.command()
 async def yawn(ctx):
-    if not ctx.message.author.voice:
-        await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
-        return
-    else:
-        channel = ctx.message.author.voice.channel
-
-    vc = await channel.connect()
-    filepath = "Yawns/" + str(random.randint(1, 6)) + ".mp3"
-    audio = discord.FFmpegPCMAudio(filepath)
-    player = vc.play(audio)
-    if filepath == "Yawns/6.mp3":
-        await ctx.send("uwu I'm sorry table-chan <a:captainoof:1004070115567992842>")
-    await asyncio.sleep(6)
-    await vc.disconnect()
+    filepath = "Clips/Yawns/" + str(random.randint(1, 6)) + ".mp3"
+    time = MP3(filepath).info.length
+    await play_audio(ctx, filepath, time + 0.25)
 
 
 @bot.event
@@ -134,4 +111,4 @@ async def on_message(message):
             await message.reply("Sugar???")
 
 
-bot.run(TOKEN)
+bot.run(token)
