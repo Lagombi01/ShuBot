@@ -7,7 +7,6 @@ class Message(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        await self.bot.process_commands(message)
         if self.bot.user.id != message.author.id:
             if 'shu' in message.content.lower():
                 await message.reply("ShuUUuUuuuuUUuUUuu?!!?!?!")

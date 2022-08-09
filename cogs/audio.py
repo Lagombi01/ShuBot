@@ -10,13 +10,12 @@ async def play_audio(ctx, clip, time):
         await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
         return
     else:
-        channel = ctx.message.author.voice.channel
+        channel = await ctx.message.author.voice.channel.connect()
 
-    vc = await channel.connect()
     audio = discord.FFmpegPCMAudio(clip)
-    player = vc.play(audio)
+    channel.play(audio)
     await asyncio.sleep(time)
-    await vc.disconnect()
+    await channel.disconnect()
 
 
 class Audio(commands.Cog):
