@@ -69,5 +69,5 @@ class Audio(commands.Cog):
         await play_audio(ctx, filepath, time + 0.25)
 
 
-def setup(bot):
-    bot.add_cog(Audio(bot))
+async def setup(bot):
+    await bot.add_cog(Audio(bot))

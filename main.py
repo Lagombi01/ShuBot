@@ -5,21 +5,42 @@ from dotenv import load_dotenv
 
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
-guild_id = os.getenv('GUILD_ID')
-
-bot = commands.Bot(command_prefix=',', status=discord.Status.online, activity=discord.Game(name="with your void UwU"))
-
-
-@bot.event
-async def on_ready():
-    print(f"Shuuu?")
+guild_id = discord.Object(id=(os.getenv('GUILD_ID')))
+app_id = os.getenv('APPLICATION_ID')
 
 
-@bot.command(name="test")
-async def test():
-    print("hi")
+class MyBot(commands.Bot):
+
+    def __init__(self):
+        super().__init__(
+            command_prefix=',',
+            status=discord.Status.online,
+            activity=discord.Game(name="with your void UwU"),
+            intents=discord.Intents.all(),
+            application_id=app_id
+        )
+        self.initial_extensions = [
+            "cogs.soundboard",
+            "cogs.audio",
+            "cogs.message"
+        ]
+
+    async def setup_hook(self):
+        for ext in self.initial_extensions:
+            await self.load_extension(ext)
+
+    async def on_ready(self):
+        print(f"Shuuu?")
 
 
-bot.load_extension("cogs.audio")
-bot.load_extension("cogs.message")
+bot = MyBot()
+
+
+@bot.command()
+@commands.is_owner()
+async def sync(ctx):
+    await bot.tree.sync(guild=guild_id)
+    print(f"Synced")
+
+
 bot.run(token)
