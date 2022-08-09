@@ -67,6 +67,8 @@ class Audio(commands.Cog):
         filepath = "Clips/Yawns/" + str(random.randint(1, 6)) + ".mp3"
         time = MP3(filepath).info.length
         await play_audio(ctx, filepath, time + 0.25)
+        if filepath == "Clips/Yawns/6.mp3":
+            await ctx.send("uwu I'm sorry table-chan <a:captainoof:1004070115567992842>")
 
 
 async def setup(bot):

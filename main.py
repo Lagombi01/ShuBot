@@ -21,6 +21,7 @@ class MyBot(commands.Bot):
         )
         self.initial_extensions = [
             "cogs.soundboard",
+            "cogs.clips",
             "cogs.audio",
             "cogs.message"
         ]
