@@ -1,5 +1,6 @@
 from cogs.Modules.play_audio import play_audio
 import random
+import discord
 from mutagen.mp3 import MP3
 
 
@@ -48,4 +49,7 @@ async def yawn_clip(ctx):
     time = MP3(filepath).info.length
     await play_audio(ctx, filepath, time + 0.25)
     if filepath == "Clips/Yawns/6.mp3":
-        await ctx.send("uwu I'm sorry table-chan <a:captainoof:1004070115567992842>")
+        if isinstance(ctx, discord.Interaction):
+            await ctx.channel.send("uwu I'm sorry table-chan <a:captainoof:1004070115567992842>")
+        else:
+            await ctx.send("uwu I'm sorry table-chan <a:captainoof:1004070115567992842>")

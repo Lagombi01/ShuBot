@@ -14,5 +14,3 @@ class Button(discord.ui.Button):
             await interaction.response.send_message("Too many requests, slow down!", ephemeral=True)
         except:
             await interaction.response.send_message("Something went wrong :S, pls tell my creator about it ^_^", ephemeral=True)
-
-

@@ -28,5 +28,3 @@ class soundboard(commands.Cog):
 
 async def setup(bot):
     await bot.add_cog(soundboard(bot), guilds=[discord.Object(id=guild_id)])
-
-
