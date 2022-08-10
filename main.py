@@ -39,8 +39,9 @@ bot = MyBot()
 
 @bot.command()
 @commands.is_owner()
-async def sync(ctx):
+async def sink(ctx):
     await bot.tree.sync(guild=guild_id)
+    await ctx.send(file=discord.File("Sink-chan.jpg"))
     print(f"Synced")
 
 
