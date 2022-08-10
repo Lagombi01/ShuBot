@@ -12,12 +12,18 @@ class soundboard(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @app_commands.command(name="soundboard", description="This is just a test")
+    @app_commands.command(name="soundboard", description="Displays a Soundboard for your listening pleasure :3")
     async def soundboard(self, interaction: discord.Interaction):
-        await interaction.channel.send(f"Hi there owo")
         view = discord.ui.View()
         view.add_item(Button("Gai", gai_clip))
-        await interaction.response.send_message("Here's a button", view=view)
+        view.add_item(Button("Cri", cri_clip))
+        view.add_item(Button("Ehh", ehh_clip))
+        view.add_item(Button("Luca", luca_clip))
+        view.add_item(Button("OwO", owo_clip))
+        view.add_item(Button("Wtf", wtf_clip))
+        view.add_item(Button("Yawn", yawn_clip, discord.ButtonStyle.green, "<a:captainsippycup:1004071026918948884>"))
+
+        await interaction.response.send_message("Here's a button", view=view, ephemeral=True)
 
 
 async def setup(bot):
