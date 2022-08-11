@@ -21,9 +21,10 @@ class soundboard(commands.Cog):
         view.add_item(Button("Luca", luca_clip))
         view.add_item(Button("OwO", owo_clip))
         view.add_item(Button("Wtf", wtf_clip))
+        view.add_item(Button("Amb", amb_clip))
         view.add_item(Button("Yawn", yawn_clip, discord.ButtonStyle.green, "<a:captainsippycup:1004071026918948884>"))
 
-        await interaction.response.send_message("Here's a button", view=view, ephemeral=True)
+        await interaction.response.send_message("Here you go ^_^", view=view, ephemeral=True)
 
 
 async def setup(bot):

@@ -12,7 +12,7 @@ class clips(commands.Cog):
 
     @app_commands.command(name="clips", description="Outputs a list of valid commands")
     async def clips(self, interaction: discord.Interaction):
-        await interaction.response.send_message(f"```gai\ncri\nehh\nboy\nluca\nowo\nwtf\nyawn```", ephemeral=True)
+        await interaction.response.send_message(f"```gai\ncri\nehh\nboy\nluca\nowo\nwtf\namb\nyawn```", ephemeral=True)
 
 
 async def setup(bot):

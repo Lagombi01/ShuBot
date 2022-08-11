@@ -44,6 +44,11 @@ async def wtf_clip(ctx):
     await play_audio(ctx, 'Clips/Wtf.mp3', time + 0.25)
 
 
+async def amb_clip(ctx):
+    time = MP3('Clips/Amb.mp3').info.length
+    await play_audio(ctx, 'Clips/Amb.mp3', time + 0.25)
+
+
 async def yawn_clip(ctx):
     filepath = "Clips/Yawns/" + str(random.randint(1, 6)) + ".mp3"
     time = MP3(filepath).info.length

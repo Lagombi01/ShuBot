@@ -35,6 +35,10 @@ class Audio(commands.Cog):
         await wtf_clip(ctx)
 
     @commands.command()
+    async def amb(self, ctx):
+        await amb_clip(ctx)
+
+    @commands.command()
     async def yawn(self, ctx):
         await yawn_clip(ctx)
 
