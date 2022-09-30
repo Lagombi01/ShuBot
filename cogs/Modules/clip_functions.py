@@ -49,8 +49,38 @@ async def amb_clip(ctx):
     await play_audio(ctx, 'Clips/Amb.mp3', time + 0.25)
 
 
+async def dic_clip(ctx):
+    time = MP3('Clips/Dic.mp3').info.length
+    await play_audio(ctx, 'Clips/Dic.mp3', time + 0.25)
+
+
+async def mouth_clip(ctx):
+    time = MP3('Clips/Mouth.mp3').info.length
+    await play_audio(ctx, 'Clips/Mouth.mp3', time + 0.25)
+
+
+async def arf_clip(ctx):
+    time = MP3('Clips/Arf.mp3').info.length
+    await play_audio(ctx, 'Clips/Arf.mp3', time + 0.25)
+
+
+async def women_clip(ctx):
+    time = MP3('Clips/Women.mp3').info.length
+    await play_audio(ctx, 'Clips/Women.mp3', time + 0.25)
+
+
+async def boba_clip(ctx):
+    time = MP3('Clips/Boba.mp3').info.length
+    await play_audio(ctx, 'Clips/Boba.mp3', time + 0.25)
+
+
+async def dom_clip(ctx):
+    time = MP3('Clips/Dom.mp3').info.length
+    await play_audio(ctx, 'Clips/Dom.mp3', time + 0.25)
+
+
 async def yawn_clip(ctx):
-    filepath = "Clips/Yawns/" + str(random.randint(1, 6)) + ".mp3"
+    filepath = "Clips/Yawns/" + str(random.randint(1, 11)) + ".mp3"
     time = MP3(filepath).info.length
     await play_audio(ctx, filepath, time + 0.25)
     if filepath == "Clips/Yawns/6.mp3":
@@ -58,3 +88,8 @@ async def yawn_clip(ctx):
             await ctx.channel.send("uwu I'm sorry table-chan <a:captainoof:1004070115567992842>")
         else:
             await ctx.send("uwu I'm sorry table-chan <a:captainoof:1004070115567992842>")
+
+
+async def funny_yawn(ctx):
+    time = MP3('Clips/Yawns/10.mp3').info.length
+    await play_audio(ctx, 'Clips/Yawns/10.mp3', time + 0.25)

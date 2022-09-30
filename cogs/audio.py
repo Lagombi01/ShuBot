@@ -39,6 +39,34 @@ class Audio(commands.Cog):
         await amb_clip(ctx)
 
     @commands.command()
+    async def dic(self, ctx):
+        await dic_clip(ctx)
+
+    @commands.command()
+    async def mouth(self, ctx):
+        await mouth_clip(ctx)
+
+    @commands.command()
+    async def arf(self, ctx):
+        await arf_clip(ctx)
+
+    @commands.command()
+    async def women(self, ctx):
+        await women_clip(ctx)
+
+    @commands.command()
+    async def uwu(self, ctx):
+        await funny_yawn(ctx)
+
+    @commands.command()
+    async def boba(self, ctx):
+        await boba_clip(ctx)
+
+    @commands.command()
+    async def dom(self, ctx):
+        await dom_clip(ctx)
+
+    @commands.command()
     async def yawn(self, ctx):
         await yawn_clip(ctx)
 
