@@ -1,4 +1,5 @@
 import os
+import subprocess
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -44,6 +45,12 @@ async def sink(ctx):
     await bot.tree.sync(guild=guild_id)
     await ctx.send(file=discord.File("Sink-chan.jpg"))
     print(f"Synced")
+
+@bot.command()
+@commands.is_owner()
+async def update(ctx):
+    subprocess.run(["python", "update.py"])
+    pass
 
 
 bot.run(token)
