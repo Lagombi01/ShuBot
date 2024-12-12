@@ -12,7 +12,7 @@ class Button(discord.ui.Button):
             await self.clip(interaction)
         except discord.errors.ClientException:
             await interaction.response.send_message("Too many requests, slow down!", ephemeral=True)
-        except e:
+        except Exception as e:
             print(e)
             await interaction.response.send_message("Something went wrong :S, pls tell my creator about it ^_^", ephemeral=True)
 
